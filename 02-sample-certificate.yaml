@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: timtest-beheer-npocloud-nl
+  namespace: sample-app
+spec:
+  secretName: timtest-beheer-npocloud-nl
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  dnsNames:
+    - 'timtest.beheer.npocloud.nl'

@@ -1,0 +1,37 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami
+  namespace: sample-app
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`timtest.beheer.npocloud.nl`)
+      kind: Rule 
+      services:
+        - kind: Service
+          name: whoami
+          port: 80
+      middlewares:
+        - name: redirect-https
+          namespace: kube-system
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: whoami-https
+  namespace: sample-app
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`timtest.beheer.npocloud.nl`)
+    services:
+    - kind: Service
+      name: whoami
+      port: 80
+  tls:
+    secretName: timtest-beheer-npocloud-nl
