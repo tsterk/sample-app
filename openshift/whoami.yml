@@ -12,19 +12,6 @@ spec:
     app: whoami
 
 ---
-apiVersion: route.openshift.io/v1
-kind: Route
-metadata:
-  name: whoami
-spec:
-  host: whoami.apps.hens.cluster.chp4.io
-  to:
-    kind: Service
-    name: whoami
-  port:
-    targetPort: 8080
-
----
 kind: Deployment
 apiVersion: apps/v1
 metadata:
