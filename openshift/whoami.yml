@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: tsterk/whoami
+          image: jwilder/whoami
           ports:
             - name: web
               containerPort: 8080
