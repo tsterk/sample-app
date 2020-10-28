@@ -1,37 +1,52 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: whoami
+  name: sample
 
 spec:
   ports:
     - protocol: TCP
-      name: web
       port: 8080
+      name: 8080-tcp
   selector:
-    app: whoami
+    app: sample
+
+---
+apiVersion: v1
+kind: Route
+metadata:
+  name: sample
+spec:
+  host: sample.apps.hens.cluster.chp4.io
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: sample
+    weight: 100
 
 ---
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: whoami
+  name: sample
   labels:
-    app: whoami
+    app: sample
 
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: whoami
+      app: sample
   template:
     metadata:
       labels:
-        app: whoami
+        app: sample
     spec:
       containers:
-        - name: whoami
-          image: jwilder/whoami
+        - name: sample
+          image: npohosting/nginx
           ports:
-            - name: web
-              containerPort: 8080
+            - containerPort: 8080
+          command:
+            - /usr/libexec/s2i/run
