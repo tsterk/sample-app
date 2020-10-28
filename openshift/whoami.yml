@@ -12,20 +12,6 @@ spec:
     app: sample
 
 ---
-apiVersion: v1
-kind: Route
-metadata:
-  name: sample
-spec:
-  host: sample.apps.hens.cluster.chp4.io
-  port:
-    targetPort: 8080-tcp
-  to:
-    kind: Service
-    name: sample
-    weight: 100
-
----
 kind: Deployment
 apiVersion: apps/v1
 metadata:
