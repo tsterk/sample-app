@@ -12,7 +12,7 @@ spec:
     app: sample
 
 ---	
-apiVersion: v1	
+apiVersion: route.openshift.io/v1
 kind: Route	
 metadata:	
   name: sample	
