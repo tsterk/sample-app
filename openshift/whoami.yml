@@ -45,7 +45,7 @@ spec:
     spec:
       containers:
         - name: sample
-          image: npohosting/nginx
+          image: registry.npohosting.nl/npohosting/nginx
           ports:
             - containerPort: 8080
           command:
